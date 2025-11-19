@@ -11,7 +11,7 @@ const admin = {
       if (password !== admin.password)
         return errorResponse(res, "password not match ");
 
-      const token = jwt.sign( 
+      const token = jwt.sign(
         {
           id: admin._id,
           email: admin.email,
@@ -21,9 +21,9 @@ const admin = {
       );
       res.cookie("admin_token", token, {
         maxAge: 7 * 24 * 1000 * 60 * 60, //7 days
-        httpOnly: false,
-        secure: false,
-        sameSite: "strict",
+        httpOnly: true,
+        secure: true,
+        sameSite: "none", 
       });
 
       return successResponse(res, "admin login", token);

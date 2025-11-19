@@ -23,10 +23,14 @@ const admin = {
         maxAge: 7 * 24 * 1000 * 60 * 60, //7 days
         httpOnly: true,
         secure: true,
-        sameSite: "none", 
+        sameSite: "none",
       });
 
-      return successResponse(res, "admin login", token);
+      return res.json({
+        success: true,
+        status: "success",
+        message: "admin login",
+      });
     } catch (error) {
       errorResponse(res, error);
     }

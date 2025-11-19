@@ -14,7 +14,15 @@ const cartRouter = require("./router/cart.router");
 const orderRouter = require("./router/order.router");
 const contactRouter = require("./router/contact.roter");
 const server = express();
-server.use(cors({ origin: "http://localhost:3000", credentials: true }));
+server.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://ishop-frontend-black.vercel.app",
+    ],
+    credentials: true,
+  })
+);
 server.use(cookieParser());
 server.use(express.json());
 server.use("/category", categoryRouter);

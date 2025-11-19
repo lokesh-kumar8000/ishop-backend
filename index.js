@@ -14,7 +14,6 @@ const cartRouter = require("./router/cart.router");
 const orderRouter = require("./router/order.router");
 const contactRouter = require("./router/contact.roter");
 const server = express();
-server.set("trust proxy", 1);
 server.use(
   cors({
     origin: [

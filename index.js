@@ -14,7 +14,6 @@ const cartRouter = require("./router/cart.router");
 const orderRouter = require("./router/order.router");
 const contactRouter = require("./router/contact.roter");
 const server = express();
-server.set("trust proxy", 1);
 server.use(
   cors({
     origin: [
@@ -25,16 +24,6 @@ server.use(
   })
 );
 
-server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://ishop-frontend-black.vercel.app"
-  );
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-  next();
-});
 server.use(cookieParser());
 server.use(express.json());
 server.use("/category", categoryRouter);

@@ -24,6 +24,7 @@ const admin = {
         httpOnly: true,
         secure: true,
         sameSite: "none",
+        path: "/" 
       });
 
       return res.json({

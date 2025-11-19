@@ -24,8 +24,7 @@ const admin = {
         httpOnly: true,
         secure: true,
         sameSite: "none",
-        path: "/",
-        domain: "https://ishop-frontend-black.vercel.app/",
+        path: "/"
       });
 
       return res.json({

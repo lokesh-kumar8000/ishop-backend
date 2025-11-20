@@ -23,7 +23,7 @@ const admin = {
         maxAge: 7 * 24 * 1000 * 60 * 60, //7 days
         httpOnly: false,
         secure: false,
-        sameSite: "strict",
+        sameSite: "none",
       });
 
       return successResponse(res, "admin login", token);

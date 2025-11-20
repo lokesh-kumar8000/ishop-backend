@@ -21,17 +21,12 @@ const admin = {
       );
       res.cookie("admin_token", token, {
         maxAge: 7 * 24 * 1000 * 60 * 60, //7 days
-        httpOnly: true,
-        secure: true,
-        sameSite: "none",
-        path: "/"
+        httpOnly: false,
+        secure: false,
+        sameSite: "strict",
       });
 
-      return res.json({
-        success: true,
-        status: "success",
-        message: "admin login",
-      });
+      return successResponse(res, "admin login", token);
     } catch (error) {
       errorResponse(res, error);
     }

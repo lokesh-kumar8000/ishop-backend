@@ -21,9 +21,9 @@ const admin = {
       );
       res.cookie("admin_token", token, {
         maxAge: 7 * 24 * 1000 * 60 * 60, //7 days
-        httpOnly: true, 
-        secure: true, 
-        sameSite: "none", 
+        httpOnly: true,
+        secure: true,
+        sameSite: true,
       });
 
       return successResponse(res, "admin login", token);

@@ -16,8 +16,10 @@ const contactRouter = require("./router/contact.roter");
 const server = express();
 server.use(
   cors({
-    origin:"https://ishop-frontend-hazel.vercel.app", 
+    origin: "https://ishop-frontend-hazel.vercel.app",
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type"],
   })
 );
 

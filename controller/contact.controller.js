@@ -1,5 +1,5 @@
-import contactModel from "../model/contact.model";
-import { createdSuccess } from "../utility/response";
+const contactModel = require("../model/contact.model");
+const { createdSuccess } = require("../utility/response");
 
 const contact = {
   async message(req, res) {
@@ -7,7 +7,7 @@ const contact = {
       const { fName, lName, email, phone, country, subject, message } =
         req.body;
 
-      const contact = await contactModel.create({
+      const newContact = await contactModel.create({
         fName,
         lName,
         email,
@@ -16,14 +16,13 @@ const contact = {
         subject,
         message,
       });
-      await contact.save();
 
-      return createdSuccess(res, "your complaint Submited!");
+      return createdSuccess(res, "Your complaint submitted!");
     } catch (error) {
       console.log(error);
-      return res.status(500).json({ error: "Error sending email" });
+      return res.status(500).json({ error: "Error saving message" });
     }
   },
 };
 
-export default contact;
+module.exports = contact;

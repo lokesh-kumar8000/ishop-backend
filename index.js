@@ -1,0 +1,69 @@
+require("dotenv").config();
+
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+var cookieParser = require("cookie-parser");
+const categoryRouter = require("./router/category.router");
+const colorRouter = require("./router/color.router");
+const brandRouter = require("./router/brand.router");
+const productRouter = require("./router/product.router");
+const adminRouter = require("./router/admin.router");
+const userRouter = require("./router/user.router");
+const cartRouter = require("./router/cart.router");
+const orderRouter = require("./router/order.router");
+const contactRouter = require("./router/contact.roter");
+const server = express();
+
+server.use((req, res, next) => {
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://ishop-frontend-hazel.vercel.app"
+  );
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+
+  next();
+});
+
+server.use(
+  cors({
+    origin: [
+      "https://ishop-frontend-hazel.vercel.app",
+      "http://localhost:3000/",
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type"],
+  })
+);
+
+server.use(cookieParser());
+server.use(express.json());
+server.use("/category", categoryRouter);
+server.use("/color", colorRouter);
+server.use("/brand", brandRouter);
+server.use("/product", productRouter);
+server.use("/admin", adminRouter);
+server.use("/user", userRouter);
+server.use("/cart", cartRouter);
+server.use("/order", orderRouter);
+server.use("/contact", contactRouter);
+server.use(express.static("./public"));
+
+server.listen(process.env.PORT, () => {
+  console.log("server Runing PORT 5000  ");
+  mongoose
+    .connect(process.env.DATABASE_URL)
+    .then(() => {
+      console.log("Data base connected");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});

@@ -19,12 +19,6 @@ const admin = {
         process.env.TOKEN_SECRETY_KEY,
         { expiresIn: "7d" }
       );
-      res.cookie("admin_token", token, {
-        maxAge: 7 * 24 * 1000 * 60 * 60, 
-        httpOnly: true,
-        secure: true,
-        sameSite: 'none',
-      });
 
       return successResponse(res, "admin login", token);
     } catch (error) {

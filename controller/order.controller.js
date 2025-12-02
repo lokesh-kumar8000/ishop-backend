@@ -40,13 +40,6 @@ const orderController = {
       if (payment_mode == 0) {
         await order.save();
         await cartModel.deleteMany({ user_id });
-        sendOrderConfirmation(
-          email,
-          name,
-          order._id,
-          cart_total,
-          "Cash on Delivery"
-        );
         return res.status(201).json({
           success: true,
           message: "Order place",
@@ -71,13 +64,6 @@ const orderController = {
               rozorpay_order_id: razorpayorder.id,
             });
             await order.save();
-            sendOrderConfirmation(
-              email,
-              name,
-              order._id,
-              cart_total,
-              "Online Payment"
-            );
             return;
           }
         });

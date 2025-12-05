@@ -3,7 +3,6 @@ const { errorResponse } = require("../utility/response");
 
 const authMiddleware = (req, res, next) => {
   const token = req.headers.authorization;
-//   console.log(token, "token");
 
   if (!token) {
     return errorResponse(res, "No Token provided, authorization denied");

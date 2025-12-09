@@ -34,6 +34,7 @@ server.use((req, res, next) => {
 server.use(
   cors({
     origin: [
+      "https://ishop-ecommerce-5xssdy7mo-lokesh-kumars-projects-50a2d94e.vercel.app",
       "https://ishop-frontend-hazel.vercel.app",
       "http://localhost:3000/",
     ],
